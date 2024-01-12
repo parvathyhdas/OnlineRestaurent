@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <form>
+    <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Display Categories</h4>
+<!--                    <p class="card-description"> Add class <code>.table-striped</code>-->
+                    </p>
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                              <th> Image </th>
+                                <th> Name </th>
+                                <th> Description </th>
+                                <th>Options</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in data %}
+                          <tr>
+                            <td class="py-1">
+                              <img src="{{i.Image.url}}" alt="image">
+                            </td>
+                            <td> {{i.Name}}</td>
+                            <td>{{i.Description}}</td>
+                            <td>
+                              <form action="{% url 'editCategory' dataid=i.id %}">
+                                <button type="submit" class="btn btn-primary mr-2">Edit</button>
+                              </form>
+                            </td>
+                             <td>
+                              <form action="{% url 'deleteCategory' dataid=i.id %}">
+                                <button type="submit" class="btn btn-primary mr-2">Delete</button>
+                              </form>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+        </form>
+</div>
+</body>
+</html>
+{% endblock %}
